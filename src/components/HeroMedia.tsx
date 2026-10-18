@@ -21,7 +21,7 @@ function usePrefersReducedMotion() {
 
 /**
  * 首屏动态肖像：视频已包含人物与黑白粒子背景，整段作为首屏画面使用。
- * 视频是转头开场、首尾姿态不一致，因此只播放一次并停留在尾帧，不循环。
+ * 循环播放；首屏保持黑底，不显示全站的 Agent Wave 动态背景。
  * 先显示静态封面，视频开始播放后淡入；缺失 / 失败 / 自动播放被拦截时保留封面。
  */
 export function HeroMedia({ className = '' }: { className?: string }) {
@@ -110,6 +110,7 @@ export function HeroMedia({ className = '' }: { className?: string }) {
           style={{ opacity: showVideo ? 1 : 0, transition: 'opacity 0.6s ease' }}
           poster={POSTER}
           muted
+          loop
           playsInline
           preload={reduced ? 'metadata' : 'auto'}
           tabIndex={-1}
@@ -134,7 +135,7 @@ export function HeroMedia({ className = '' }: { className?: string }) {
         aria-hidden
         className="absolute inset-0 lg:hidden"
         style={{
-          background: 'linear-gradient(180deg, #000 0%, rgba(0,0,0,0) 18%, rgba(0,0,0,0) 72%, #07070C 100%)',
+          background: 'linear-gradient(180deg, #000 0%, rgba(0,0,0,0) 18%, rgba(0,0,0,0) 72%, rgba(0,0,0,0.55) 100%)',
         }}
       />
       {loaded && !failed && (

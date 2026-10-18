@@ -64,7 +64,7 @@ export function ToolCarousel({ tools }: { tools: Tool[] }) {
         onPointerDown={onPointerDown}
         onPointerUp={onPointerUp}
         onPointerCancel={() => (start.current = null)}
-        className="relative mx-auto h-[300px] w-full max-w-5xl overflow-hidden select-none sm:h-[320px]"
+        className="relative mx-auto h-[380px] w-full max-w-5xl overflow-hidden select-none sm:h-[360px]"
         style={{ touchAction: 'pan-y' }}
       >
         {tools.map((tool, i) => {
@@ -100,6 +100,17 @@ export function ToolCarousel({ tools }: { tools: Tool[] }) {
               <h3 className="m-0 mt-5 text-2xl font-bold">{tool.name}</h3>
               <p className="mt-3 text-[0.9375rem] text-muted">{tool.description}</p>
               {tool.isSample && <span className="tag tag-sample mt-4">示例 / 待替换</span>}
+              {tool.href && active && (
+                <a
+                  href={tool.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-cyan no-underline"
+                >
+                  官网 ↗
+                </a>
+              )}
             </div>
           )
         })}

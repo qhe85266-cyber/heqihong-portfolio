@@ -1,0 +1,10 @@
+{
+  "description": "展示何棋宏的个人资料、项目和研究成果，提供专业的个人品牌展示和学术交流平台。",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

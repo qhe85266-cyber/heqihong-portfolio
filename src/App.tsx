@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom'
 import { Header } from './components/Header'
 import { Footer } from './components/Footer'
 import { ScrollManager } from './components/ScrollManager'
+import { SiteBackground } from './components/SiteBackground'
 import Home from './pages/Home'
 import ProjectPage from './pages/ProjectPage'
 import ResearchPage from './pages/ResearchPage'
@@ -16,6 +17,7 @@ export default function App() {
       >
         跳到主要内容
       </a>
+      <SiteBackground />
       <ScrollManager />
       <Header />
       <main id="main">

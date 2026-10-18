@@ -42,7 +42,7 @@ export function Hero() {
         className="pointer-events-none absolute inset-0 z-[1] hidden lg:block"
         style={{
           background:
-            'linear-gradient(90deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.5) 24%, rgba(0,0,0,0.12) 44%, rgba(0,0,0,0) 54%), linear-gradient(0deg, #07070C 0%, rgba(7,7,12,0) 26%), linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 14%)',
+            'linear-gradient(90deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.5) 24%, rgba(0,0,0,0.12) 44%, rgba(0,0,0,0) 54%), linear-gradient(0deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 26%), linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 14%)',
         }}
       />
       {/* 辅助信息 + 关键词条 */}

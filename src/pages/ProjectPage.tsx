@@ -4,6 +4,8 @@ import { ArrowLeft, ArrowUpRight, Code2, Download, ExternalLink } from 'lucide-r
 import { getProject } from '../data/projects'
 import type { ProjectLink } from '../data/projects'
 import { Cover } from '../components/Cover'
+import { ProductDemo } from '../components/demo/ProductDemo'
+import { demos } from '../data/demos'
 import NotFound from './NotFound'
 import { profile } from '../data/profile'
 
@@ -45,12 +47,22 @@ export default function ProjectPage() {
           {project.isSample && <span className="tag tag-sample">示例模板 / 待替换</span>}
         </div>
         <h1 className="mt-5 mb-0 text-[clamp(2rem,5vw,3.5rem)] font-extrabold leading-tight">{project.title}</h1>
+        <p className="mt-5 mb-0 border-l-2 border-violet pl-4 text-[clamp(1.05rem,2vw,1.3rem)] font-semibold leading-relaxed text-white">
+          {project.pitch}
+        </p>
         <p className="lead mt-4">{project.overview}</p>
+        {demos[project.slug] && (
+          <a href="#demo" className="btn mt-6 !px-4">
+            查看演示流程 ↓
+          </a>
+        )}
       </header>
 
-      <div className="card mt-10 aspect-[16/9] overflow-hidden">
+      <div className="card mt-10 aspect-[16/9] overflow-hidden text-[clamp(14px,2.4vw,22px)]">
         <Cover project={project} />
       </div>
+
+      {demos[project.slug] && <ProductDemo demo={demos[project.slug]} accent={project.coverTone[1]} />}
 
       <Block title="概览">
         <dl className="m-0 grid gap-4 sm:grid-cols-2">
@@ -94,6 +106,7 @@ export default function ProjectPage() {
         </ol>
       </Block>
 
+      {project.screenshots.length > 0 && (
       <Block title="截图">
         <ul className="m-0 grid list-none gap-4 p-0 sm:grid-cols-2">
           {project.screenshots.map((s) => (
@@ -107,6 +120,7 @@ export default function ProjectPage() {
           ))}
         </ul>
       </Block>
+      )}
 
       <Block title="结果与验证">
         <p className="m-0 text-[#d0d0dc]">{project.validation}</p>
