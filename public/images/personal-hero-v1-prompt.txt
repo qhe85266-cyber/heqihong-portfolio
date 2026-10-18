@@ -1,0 +1,3 @@
+Generated with built-in image_gen. Edit type: identity-preserve.
+Source: user-supplied personal portrait.
+Prompt: Preserve the subject's recognizable facial identity, age, natural hairstyle and black suit. Transform the ID photograph into a cinematic personal portfolio hero with a near-black background, deep indigo and violet atmosphere, cyan side light, restrained violet rim lighting and a clear natural face. Wide landscape composition, waist-up portrait placed toward the right, generous dark negative space on the left for website text. Keep realistic skin texture and an approachable confident expression. Bottom fades into black. No helmet, glasses, text, logos, watermark, buttons or UI.
