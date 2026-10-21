@@ -2,14 +2,14 @@ import { useState } from 'react'
 import { Check } from 'lucide-react'
 import { experiences } from '../data/experience'
 
-const accents = ['#956BFF', '#3fd0c9', '#5b8cff']
+const accents = ['#956BFF', '#3fd0c9', '#5b8cff', '#f2a65a']
 
 /** 个人经历：左侧公司时间线切换，右侧展开"关键判断 → 过程 → 结果"。 */
 export function Experience() {
   const [active, setActive] = useState(0)
   const [stage, setStage] = useState(0)
   const e = experiences[active]
-  const accent = accents[active]
+  const accent = accents[active % accents.length]
 
   return (
     <div className="grid gap-8 lg:grid-cols-[280px_1fr] lg:gap-12">
@@ -31,7 +31,7 @@ export function Experience() {
           >
             <span
               className="absolute top-4 bottom-4 left-0 w-[3px] rounded-full transition-opacity"
-              style={{ background: accents[i], opacity: i === active ? 1 : 0 }}
+              style={{ background: accents[i % accents.length], opacity: i === active ? 1 : 0 }}
             />
             <span className="block text-xs tabular-nums text-muted">{x.period}</span>
             <span className="mt-1 block text-lg font-bold text-white">{x.company}</span>

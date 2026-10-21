@@ -31,6 +31,13 @@ export const tools: Tool[] = [
     href: 'https://gemini.google.com',
   },
   {
+    name: 'Perplexity',
+    category: 'AI 搜索 · 研究',
+    description: '带引用来源的 AI 搜索引擎：直接给出整理好的答案并标注出处，支持追问与深度研究，适合竞品调研、行业资料收集和事实核查。',
+    isSample: false,
+    href: 'https://www.perplexity.ai',
+  },
+  {
     name: 'Pi',
     category: 'AI 编程 · 终端 Agent',
     description: '极简的终端编程智能体（agent harness），可自由切换模型、支持 Skills 与 AGENTS.md，能回溯和分支会话，按自己的工作流定制。',

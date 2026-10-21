@@ -75,7 +75,7 @@ function Method() {
           <h2 id="method-title" className="h2">
             工作方法
           </h2>
-          <p className="lead mt-4">四个习惯，在三段经历里反复验证过。选择一项，查看它在项目中的证据。</p>
+          <p className="lead mt-4">四个习惯，在每段经历里反复验证过。选择一项，查看它在项目中的证据。</p>
         </Reveal>
         <Reveal>
           <div role="tablist" aria-label="工作方法" className="grid gap-3 md:grid-cols-4">
@@ -249,7 +249,7 @@ function ExperienceSection() {
           <h2 id="experience-title" className="h2">
             个人经历
           </h2>
-          <p className="lead mt-4">从模型评测，到智能体平台，再到行业 Agent 落地。每段经历：一个关键判断，一条完整链路，一组清晰的成果。</p>
+          <p className="lead mt-4">从模型评测，到智能体平台，再到跨境电商 SaaS 的 AI 落地。每个项目：一个关键判断，一条完整链路，一组清晰的成果。</p>
         </Reveal>
         <Reveal>
           <Experience />
