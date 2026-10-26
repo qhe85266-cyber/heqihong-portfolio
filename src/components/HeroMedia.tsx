@@ -1,27 +1,15 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Pause, Play, RotateCcw } from 'lucide-react'
+import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion'
 
 const POSTER = '/images/personal-hero-v4-caramel.jpg'
 const VIDEO = '/videos/personal-hero.mp4'
 
 type Intent = 'auto' | 'play' | 'pause'
 
-function usePrefersReducedMotion() {
-  const [reduced, setReduced] = useState(
-    () => typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches,
-  )
-  useEffect(() => {
-    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
-    const onChange = () => setReduced(mq.matches)
-    mq.addEventListener('change', onChange)
-    return () => mq.removeEventListener('change', onChange)
-  }, [])
-  return reduced
-}
-
 /**
  * 首屏动态肖像：视频已包含人物与黑白粒子背景，整段作为首屏画面使用。
- * 循环播放；首屏保持黑底，不显示全站的 Agent Wave 动态背景。
+ * 循环播放；首屏保持实底，不显示全站的 Agent Wave 动态背景。
  * 先显示静态封面，视频开始播放后淡入；缺失 / 失败 / 自动播放被拦截时保留封面。
  */
 export function HeroMedia({ className = '' }: { className?: string }) {
@@ -135,7 +123,8 @@ export function HeroMedia({ className = '' }: { className?: string }) {
         aria-hidden
         className="absolute inset-0 lg:hidden"
         style={{
-          background: 'linear-gradient(180deg, #000 0%, rgba(0,0,0,0) 18%, rgba(0,0,0,0) 72%, rgba(0,0,0,0.55) 100%)',
+          background:
+            'linear-gradient(180deg, var(--color-bg) 0%, rgb(12 10 8 / 0) 18%, rgb(12 10 8 / 0) 72%, rgb(12 10 8 / 0.6) 100%)',
         }}
       />
       {loaded && !failed && (
@@ -145,7 +134,7 @@ export function HeroMedia({ className = '' }: { className?: string }) {
           aria-label={label}
           title={label}
           data-state={ended ? 'ended' : playing ? 'playing' : 'paused'}
-          className="pointer-events-auto absolute bottom-4 right-4 z-20 inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-black/50 text-white backdrop-blur hover:bg-black/70 lg:bottom-auto lg:top-24 lg:right-10"
+          className="pointer-events-auto absolute bottom-4 right-4 z-20 inline-flex h-11 w-11 items-center justify-center rounded-full border border-line-strong bg-bg/60 text-fg backdrop-blur hover:bg-bg/80 lg:bottom-auto lg:top-24 lg:right-10"
         >
           {ended ? <RotateCcw size={18} aria-hidden /> : playing ? <Pause size={18} aria-hidden /> : <Play size={18} aria-hidden />}
         </button>

@@ -19,7 +19,7 @@ const linkMeta: Record<ProjectLink['kind'], { icon: typeof Code2 }> = {
 function Block({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section className="border-t border-line py-10 md:py-14">
-      <h2 className="m-0 mb-5 text-2xl font-bold">{title}</h2>
+      <h2 className="m-0 mb-5 font-serif text-2xl font-bold">{title}</h2>
       {children}
     </section>
   )
@@ -46,8 +46,8 @@ export default function ProjectPage() {
           <span className="tag">{project.category}</span>
           {project.isSample && <span className="tag tag-sample">示例模板 / 待替换</span>}
         </div>
-        <h1 className="mt-5 mb-0 text-[clamp(2rem,5vw,3.5rem)] font-extrabold leading-tight">{project.title}</h1>
-        <p className="mt-5 mb-0 border-l-2 border-violet pl-4 text-[clamp(1.05rem,2vw,1.3rem)] font-semibold leading-relaxed text-white">
+        <h1 className="mt-5 mb-0 font-serif text-[clamp(2rem,5vw,3.5rem)] font-bold leading-tight">{project.title}</h1>
+        <p className="mt-5 mb-0 border-l-2 border-accent pl-4 text-[clamp(1.05rem,2vw,1.3rem)] font-semibold leading-relaxed text-fg">
           {project.pitch}
         </p>
         <p className="lead mt-4">{project.overview}</p>
@@ -78,7 +78,7 @@ export default function ProjectPage() {
       </Block>
 
       <Block title="问题与目标">
-        <p className="m-0 text-[#d0d0dc]">{project.problem}</p>
+        <p className="m-0 text-soft">{project.problem}</p>
         <ul className="mt-4 list-disc space-y-1 pl-5 text-muted">
           {project.goals.map((g) => (
             <li key={g}>{g}</li>
@@ -87,7 +87,7 @@ export default function ProjectPage() {
       </Block>
 
       <Block title="个人贡献">
-        <ul className="m-0 list-disc space-y-1 pl-5 text-[#d0d0dc]">
+        <ul className="m-0 list-disc space-y-1 pl-5 text-soft">
           {project.contribution.map((c) => (
             <li key={c}>{c}</li>
           ))}
@@ -98,7 +98,7 @@ export default function ProjectPage() {
         <ol className="m-0 grid list-none gap-4 p-0 sm:grid-cols-2">
           {project.process.map((s, i) => (
             <li key={s.title} className="card p-5">
-              <span className="text-sm font-semibold tabular-nums text-violet">0{i + 1}</span>
+              <span className="text-sm font-semibold tabular-nums text-accent">0{i + 1}</span>
               <h3 className="m-0 mt-2 text-lg font-bold">{s.title}</h3>
               <p className="mt-1 text-[0.9375rem] text-muted">{s.description}</p>
             </li>
@@ -123,7 +123,7 @@ export default function ProjectPage() {
       )}
 
       <Block title="结果与验证">
-        <p className="m-0 text-[#d0d0dc]">{project.validation}</p>
+        <p className="m-0 text-soft">{project.validation}</p>
       </Block>
 
       <Block title="限制">

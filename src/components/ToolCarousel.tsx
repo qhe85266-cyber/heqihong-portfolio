@@ -92,8 +92,8 @@ export function ToolCarousel({ tools }: { tools: Tool[] }) {
                 zIndex: 10 - abs,
                 pointerEvents: abs > 2 ? 'none' : 'auto',
                 transition: 'transform 0.45s cubic-bezier(.2,.7,.2,1), opacity 0.45s ease, border-color 0.25s',
-                borderColor: active ? 'rgba(149,107,255,0.55)' : undefined,
-                boxShadow: active ? '0 20px 60px -20px rgba(149,107,255,0.45)' : undefined,
+                borderColor: active ? 'rgb(212 163 115 / 0.5)' : undefined,
+                boxShadow: active ? '0 20px 60px -24px rgb(212 163 115 / 0.3)' : undefined,
               }}
             >
               <span className="tag">{tool.category}</span>
@@ -106,7 +106,7 @@ export function ToolCarousel({ tools }: { tools: Tool[] }) {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={(e) => e.stopPropagation()}
-                  className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-cyan no-underline"
+                  className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-accent no-underline"
                 >
                   官网 ↗
                 </a>
@@ -119,7 +119,7 @@ export function ToolCarousel({ tools }: { tools: Tool[] }) {
       <div className="mt-6 flex items-center justify-center gap-4">
         <button
           type="button"
-          className="btn !px-0 w-11 disabled:cursor-not-allowed disabled:opacity-35"
+          className="btn !px-0 w-11 shrink-0 disabled:cursor-not-allowed disabled:opacity-35"
           aria-label="上一个工具"
           disabled={index === 0}
           onClick={() => step(-1)}
@@ -134,13 +134,13 @@ export function ToolCarousel({ tools }: { tools: Tool[] }) {
               aria-label={`第 ${i + 1} 个：${tool.name}`}
               aria-current={i === index ? 'true' : undefined}
               onClick={() => go(i)}
-              className="inline-flex h-11 w-8 items-center justify-center"
+              className="inline-flex h-11 w-6 items-center justify-center sm:w-8"
             >
               <span
                 className="block h-2 rounded-full transition-all"
                 style={{
                   width: i === index ? 24 : 8,
-                  background: i === index ? '#956BFF' : 'rgba(255,255,255,0.28)',
+                  background: i === index ? 'var(--color-accent)' : 'rgb(243 238 230 / 0.28)',
                 }}
               />
             </button>
@@ -148,7 +148,7 @@ export function ToolCarousel({ tools }: { tools: Tool[] }) {
         </div>
         <button
           type="button"
-          className="btn !px-0 w-11 disabled:cursor-not-allowed disabled:opacity-35"
+          className="btn !px-0 w-11 shrink-0 disabled:cursor-not-allowed disabled:opacity-35"
           aria-label="下一个工具"
           disabled={index === last}
           onClick={() => step(1)}

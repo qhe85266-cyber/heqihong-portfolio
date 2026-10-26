@@ -7,29 +7,30 @@ export function Hero() {
   return (
     <section
       aria-labelledby="hero-title"
-      className="relative flex min-h-svh flex-col overflow-hidden bg-black lg:block"
+      className="relative flex min-h-svh flex-col overflow-hidden bg-bg lg:block"
     >
       {/* 文字层：始终位于左侧，人物头部与眼睛不被遮挡 */}
       <div
         className="container-x relative z-10 flex flex-col lg:min-h-svh lg:justify-center"
         style={{ paddingTop: 'calc(var(--header-h) + 40px)' }}
       >
-        <div className="hero-copy max-w-[44rem] pb-10 lg:pb-24">
+        <div className="hero-copy max-w-[44rem] pb-10 lg:pb-32">
+          <p className="eyebrow">{profile.heroEyebrow}</p>
           <h1 id="hero-title" className="hero-title">
             {profile.name}
           </h1>
           <p className="hero-role">{profile.role}</p>
           <p className="hero-tagline">{profile.tagline}</p>
 
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <Link to={{ pathname: '/', hash: 'work' }} className="btn btn-primary">
-              查看作品 <ArrowRight size={18} aria-hidden />
+          <div className="mt-9 flex flex-wrap items-center gap-3">
+            <Link to={{ pathname: '/', hash: 'loop' }} className="btn btn-primary">
+              AI 商业化闭环 <ArrowRight size={18} aria-hidden />
             </Link>
-            <Link to={{ pathname: '/', hash: 'about' }} className="btn">
-              关于我
+            <Link to={{ pathname: '/', hash: 'experience' }} className="btn">
+              项目经历
             </Link>
             <Link to={{ pathname: '/', hash: 'contact' }} className="btn">
-              联系
+              联系我
             </Link>
           </div>
         </div>
@@ -42,15 +43,23 @@ export function Hero() {
         className="pointer-events-none absolute inset-0 z-[1] hidden lg:block"
         style={{
           background:
-            'linear-gradient(90deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.5) 24%, rgba(0,0,0,0.12) 44%, rgba(0,0,0,0) 54%), linear-gradient(0deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 26%), linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 14%)',
+            'linear-gradient(90deg, rgb(12 10 8 / 0.78) 0%, rgb(12 10 8 / 0.52) 26%, rgb(12 10 8 / 0.12) 46%, rgb(12 10 8 / 0) 56%), linear-gradient(0deg, var(--color-bg) 0%, rgb(12 10 8 / 0.6) 12%, rgb(12 10 8 / 0) 32%), linear-gradient(180deg, rgb(12 10 8 / 0.6) 0%, rgb(12 10 8 / 0) 14%)',
         }}
       />
-      {/* 辅助信息 + 关键词条 */}
+      {/* 履历摘要 + 能力关键词 */}
       <div className="relative z-10 order-4 lg:absolute lg:inset-x-0 lg:bottom-0">
         <div className="container-x pb-8 pt-6 lg:pt-0">
-          <p className="m-0 mb-5 text-sm tracking-wide text-muted lg:text-right">
-            {profile.heroAside.join(' · ')}
-          </p>
+          <ul
+            aria-label="履历摘要"
+            className="m-0 mb-5 flex list-none flex-col gap-1.5 p-0 text-sm text-soft md:flex-row md:flex-wrap md:items-center md:gap-x-4 lg:justify-end"
+          >
+            {profile.heroAside.map((t, i) => (
+              <li key={t} className="flex items-center gap-4">
+                {i > 0 && <span aria-hidden className="hidden h-3 w-px bg-line-strong md:block" />}
+                {t}
+              </li>
+            ))}
+          </ul>
           <ul
             aria-label="能力关键词"
             className="m-0 flex list-none flex-wrap gap-2 p-0 lg:border-t lg:border-line lg:pt-5"

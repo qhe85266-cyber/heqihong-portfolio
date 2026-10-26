@@ -2,7 +2,7 @@ import { ArrowUp } from 'lucide-react'
 
 export function Footer() {
   return (
-    <footer className="border-t border-line py-10">
+    <footer className="surface py-10">
       <div className="container-x flex flex-wrap items-center justify-end gap-4">
         <button
           type="button"
