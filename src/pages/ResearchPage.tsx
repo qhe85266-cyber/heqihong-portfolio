@@ -22,7 +22,7 @@ export default function ResearchPage() {
       </Link>
       <header>
         {article.isSample && <span className="tag tag-sample">示例文章 / 待替换</span>}
-        <h1 className="mt-5 mb-0 text-[clamp(1.875rem,4.5vw,3rem)] font-extrabold leading-tight">{article.title}</h1>
+        <h1 className="mt-5 mb-0 font-serif text-[clamp(1.875rem,4.5vw,3rem)] font-bold leading-tight">{article.title}</h1>
         <p className="lead mt-4">{article.summary}</p>
         {article.date && <p className="mt-2 text-sm text-muted">{article.date}</p>}
       </header>
@@ -30,9 +30,9 @@ export default function ResearchPage() {
       <div className="mt-10">
         {article.sections.map((s) => (
           <section key={s.heading} className="border-t border-line py-8">
-            <h2 className="m-0 mb-4 text-2xl font-bold">{s.heading}</h2>
+            <h2 className="m-0 mb-4 font-serif text-2xl font-bold">{s.heading}</h2>
             {s.body.map((p) => (
-              <p key={p} className="m-0 mb-4 text-[#d0d0dc]">
+              <p key={p} className="m-0 mb-4 leading-[1.9] text-soft">
                 {p}
               </p>
             ))}
@@ -41,12 +41,12 @@ export default function ResearchPage() {
       </div>
 
       <section className="border-t border-line py-8">
-        <h2 className="m-0 mb-4 text-2xl font-bold">来源</h2>
+        <h2 className="m-0 mb-4 font-serif text-2xl font-bold">来源</h2>
         <ul className="m-0 list-disc space-y-1 pl-5 text-muted">
           {article.sources.map((s) => (
             <li key={s.label}>
               {s.href ? (
-                <a href={s.href} target="_blank" rel="noopener noreferrer" className="text-cyan">
+                <a href={s.href} target="_blank" rel="noopener noreferrer" className="text-accent underline underline-offset-4">
                   {s.label}
                 </a>
               ) : (
