@@ -1,31 +1,58 @@
 import { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
+import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion'
 
-// Agent Wave 动态背景：全站固定在最底层，替换原来的纯黑底色。100% 不透明、无遮罩。
-const BG_VIDEO =
-  'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260818_072341_50851634-bbc3-4c33-9acc-7647d4db44aa.mp4'
+// Agent Wave：本地 H.264 循环视频（暖焦糖双色调，约 1.2 MB）与同色调静态封面
+const VIDEO = '/videos/agent-wave.mp4'
+const POSTER = '/images/agent-wave-poster.jpg'
 
+/**
+ * 全站氛围背景，固定在最底层：
+ * - 首屏与实底区块会盖住它，只在首页的"开窗"区块中透出；
+ * - 始终叠加压暗与暗角，文字对比度不依赖视频本身的明暗；
+ * - 页面加载完成后才挂载视频，不与首屏肖像视频争抢带宽；
+ * - 减少动态模式与内页只显示静态封面。
+ */
 export function SiteBackground() {
-  const [reduced, setReduced] = useState(false)
+  const reduced = usePrefersReducedMotion()
+  const { pathname } = useLocation()
+  const [pageLoaded, setPageLoaded] = useState(() => document.readyState === 'complete')
+  const [failed, setFailed] = useState(false)
+
   useEffect(() => {
-    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
-    const on = () => setReduced(mq.matches)
-    on()
-    mq.addEventListener('change', on)
-    return () => mq.removeEventListener('change', on)
-  }, [])
+    if (pageLoaded) return
+    const onLoad = () => setPageLoaded(true)
+    window.addEventListener('load', onLoad, { once: true })
+    return () => window.removeEventListener('load', onLoad)
+  }, [pageLoaded])
+
+  const isHome = pathname === '/'
+  const playVideo = isHome && pageLoaded && !reduced && !failed
 
   return (
-    <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 bg-black">
-      <video
-        className="h-full w-full object-cover"
-        src={BG_VIDEO}
-        autoPlay={!reduced}
-        muted
-        loop
-        playsInline
-        preload="auto"
-        tabIndex={-1}
+    <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-bg">
+      <img
+        src={POSTER}
+        alt=""
+        decoding="async"
+        fetchPriority="low"
+        className="absolute inset-0 h-full w-full object-cover"
       />
+      {playVideo && (
+        <video
+          className="absolute inset-0 h-full w-full object-cover"
+          src={VIDEO}
+          poster={POSTER}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          tabIndex={-1}
+          onError={() => setFailed(true)}
+        />
+      )}
+      <div className={isHome ? 'site-bg-scrim' : 'site-bg-scrim site-bg-scrim--quiet'} />
     </div>
   )
 }
